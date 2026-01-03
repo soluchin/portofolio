@@ -3,16 +3,19 @@ import type { Experience } from "../types/experience";
 import type { Certification } from "../types/certification";
 import type { Project } from "../types/project";
 import type { Stack } from "../types/stack";
-import ProfilePic from "../assets/profile.jpg";
-import JsIcon from "../assets/stacks/js.svg";
-import TsIcon from "../assets/stacks/ts.svg";
-import DockerIcon from "../assets/stacks/docker.svg";
-import ReactIcon from "../assets/stacks/react.svg";
-import CSIcon from "../assets/stacks/cs.svg";
-import NetCoreIcon from "../assets/stacks/netcore.svg";
-import PostgreSQLIcon from "../assets/stacks/postgresql.svg";
-import GitIcon from "../assets/stacks/git.svg";
 import type { Degree } from "../types/degree";
+
+import ProfilePic from "../assets/profile.jpg";
+import JsIcon from "../assets/js.svg";
+import TsIcon from "../assets/ts.svg";
+import DockerIcon from "../assets/docker.svg";
+import ReactIcon from "../assets/react.svg";
+import CSIcon from "../assets/cs.svg";
+import NetCoreIcon from "../assets/netcore.svg";
+import PostgreSQLIcon from "../assets/postgresql.svg";
+import GitIcon from "../assets/git.svg";
+import KafkaIcon from "../assets/kafka.svg";
+import NestJSIcon from "../assets/nestjs.svg";
 
 export const profile: Profile = {
     name: "Rafi Solichin",
@@ -23,15 +26,17 @@ export const profile: Profile = {
     linkedin: "https://www.linkedin.com/in/rafisolichin",
 }
 
-export const stacks: Stack[] = [
+export const techStacks: Stack[] = [
     {name: "C#", icon: CSIcon},
     {name: ".NET Core", icon: NetCoreIcon},
     {name: "JavaScript", icon: JsIcon},
     {name: "TypeScript", icon: TsIcon},
+    {name: "NestJS", icon: NestJSIcon},
     {name: "React", icon: ReactIcon},
     {name: "Docker", icon: DockerIcon},
     {name: "PostgreSQL", icon: PostgreSQLIcon},
     {name: "Version Control (Git)", icon: GitIcon},
+    {name: "Kafka Message Broker", icon: KafkaIcon},
 ];
 
 export const experiences: Experience[] = [
