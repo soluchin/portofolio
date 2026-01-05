@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Github, Linkedin, Building2, GraduationCap, Award } from 'lucide-react'
 import { profile, techStacks, experiences, certifications, projects, degrees } from './data/data'
 import { SectionHeader, SocialButton, MainCanvasCard } from './components/ui'
-import { ExperienceCard, EducationCard, ProjectCard, CertificationCard, TechStackCard } from './components/cards'
+import { EducationCard, ProjectCard, CertificationCard, TechStackCard } from './components/cards'
 import { ExperienceMap } from './components/ExperienceMap'
 import { ExperienceTimeline, MobileViewToggle } from './components/ExperienceTimeline'
 import type { Experience } from './types/experience'
@@ -277,17 +277,19 @@ function Footer() {
 
 function App() {
   return (
-    <div className="grid-pattern md:py-10">
-      <MainCanvasCard>
-        <HeroSection />
-        <TechStackSection />
-        <ExperienceSection />
-        <EducationSection />
-        <ProjectsSection />
-        <CertificationsSection />
-      </MainCanvasCard>
+    <>
+      <div className="grid-pattern md:py-10">
+        <MainCanvasCard>
+          <HeroSection />
+          <TechStackSection />
+          <ExperienceSection />
+          <EducationSection />
+          <ProjectsSection />
+          <CertificationsSection />
+        </MainCanvasCard>
+      </div>
       <Footer />
-    </div>
+    </>
   )
 }
 
