@@ -5,6 +5,7 @@ interface Profile {
     bio: string;
     github: string;
     linkedin: string;
+    homeLonglat?: { lat: number; long: number };
 }
 
 export type { Profile };

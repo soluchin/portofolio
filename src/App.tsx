@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Github, Linkedin, Building2, GraduationCap, Award } from 'lucide-react'
+import { Github, Linkedin, Footprints, GraduationCap, Award, BadgeAlert } from 'lucide-react'
 import { profile, techStacks, experiences, certifications, projects, degrees } from './data/data'
 import { SectionHeader, SocialButton, MainCanvasCard } from './components/ui'
 import { EducationCard, ProjectCard, CertificationCard, TechStackCard } from './components/cards'
@@ -92,8 +92,8 @@ function TechStackSection() {
   )
 }
 
-// Experience Section Component
-function ExperienceSection() {
+// Footprints Section Component
+function FootprintsSection() {
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null)
   const [mobileView, setMobileView] = useState<'list' | 'map'>('list')
   
@@ -119,8 +119,8 @@ function ExperienceSection() {
       <div className="absolute bottom-40 right-1/4 w-5 h-5 bg-red-400 border-2 border-black sparkle-diamond animate-float hidden md:block" style={{animationDelay: '0.7s'}}></div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <SectionHeader color="orange" icon={<Building2 size={28} />}>
-          My Journey Through Time & Space 🗺️
+        <SectionHeader color="orange" icon={<Footprints size={28} />}>
+          My Footprints
         </SectionHeader>
         
         {/* Main container with neo-brutalism style */}
@@ -137,7 +137,7 @@ function ExperienceSection() {
               <div className="p-4 border-b-4 border-black bg-gray-50">
                 <h3 className="font-black text-lg">Journey Timeline</h3>
               </div>
-              <div className="p-4 max-h-[500px] md:max-h-[600px] overflow-y-auto">
+              <div className="max-h-125 md:max-h-150 overflow-y-auto">
                 <ExperienceTimeline 
                   experiences={sortedExperiences}
                   selectedExperience={selectedExperience}
@@ -151,6 +151,8 @@ function ExperienceSection() {
             <div className={`md:w-3/5 lg:w-2/3 ${mobileView === 'map' ? 'block' : 'hidden md:block'}`}>
               <ExperienceMap 
                 experiences={sortedExperiences}
+                degrees={degrees}
+                profile={profile}
                 selectedExperience={selectedExperience}
                 onMarkerClick={handleExperienceClick}
                 formatDate={formatDate}
@@ -201,8 +203,8 @@ function ProjectsSection() {
       <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-yellow-400 border-2 border-black sparkle animate-float hidden lg:block" style={{animationDelay: '0.5s'}}></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeader color="pink">
-          🚀 Projects
+        <SectionHeader color="pink" icon={<BadgeAlert size={28} />}>
+          Projects
         </SectionHeader>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -282,7 +284,7 @@ function App() {
         <MainCanvasCard>
           <HeroSection />
           <TechStackSection />
-          <ExperienceSection />
+          <FootprintsSection />
           <EducationSection />
           <ProjectsSection />
           <CertificationsSection />

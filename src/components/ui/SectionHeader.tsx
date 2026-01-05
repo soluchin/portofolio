@@ -19,10 +19,11 @@ const colorClasses: Record<ColorVariant, string> = {
 
 export function SectionHeader({ children, color = 'orange', icon }: SectionHeaderProps) {
   return (
-    <div className={`inline-block ${colorClasses[color]} border-4 border-black px-6 py-2 mb-8 neo-shadow`}>
-      <h2 className="text-2xl md:text-3xl font-black flex items-center gap-2">
+    <div className={`${colorClasses[color]} border-4 border-black px-6 py-6 mb-8 neo-shadow w-full`}>
+      <h2 className="text-2xl md:text-3xl font-black flex items-center justify-center gap-3">
         {icon}
         {children}
+        {icon}
       </h2>
     </div>
   )

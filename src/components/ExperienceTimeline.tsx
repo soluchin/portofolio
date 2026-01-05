@@ -31,7 +31,7 @@ export function ExperienceTimeline({
           
           {/* Content */}
           <div 
-            className={`ml-10 pb-6 cursor-pointer transition-all ${
+            className={`ml-10 pb-6 p-4 cursor-pointer transition-all ${
               selectedExperience === exp ? 'scale-[1.02]' : ''
             }`}
             onClick={() => onExperienceClick(exp)}
@@ -40,7 +40,7 @@ export function ExperienceTimeline({
               className={`p-4 border-3 border-black rounded-lg transition-all ${
                 selectedExperience === exp 
                   ? 'bg-yellow-100 neo-shadow' 
-                  : 'bg-white hover:bg-gray-50'
+                  : 'bg-white hover:bg-gray-200 neo-hover neo-shadow-sm neo-hover'
               }`}
             >
               <h4 className="font-black text-lg">{exp.role}</h4>

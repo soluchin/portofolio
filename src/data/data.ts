@@ -24,6 +24,7 @@ export const profile: Profile = {
     bio: "Software engineer with a passion for creating impactful solutions.",
     github: "https://github.com/soluchin",
     linkedin: "https://www.linkedin.com/in/rafisolichin",
+    homeLonglat: { lat: -6.115653, long: 106.179095 },
 }
 
 export const techStacks: Stack[] = [
@@ -140,6 +141,7 @@ export const degrees: Degree[] = [
         startYear: 2018,
         endYear: 2023,
         grade: "3.17 GPA",
-        description: "Studied various computer science topics including algorithms, data structures, and software engineering."
+        description: "Studied various computer science topics including algorithms, data structures, and software engineering.",
+        longlat: { lat: -6.55598639267481, long: 106.72639540846679 },
     }
 ];
