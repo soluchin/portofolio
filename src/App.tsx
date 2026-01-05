@@ -1,7 +1,11 @@
+import { useState } from 'react'
 import { Github, Linkedin, Building2, GraduationCap, Award } from 'lucide-react'
 import { profile, techStacks, experiences, certifications, projects, degrees } from './data/data'
-import { SectionHeader, SocialButton } from './components/ui'
+import { SectionHeader, SocialButton, MainCanvasCard } from './components/ui'
 import { ExperienceCard, EducationCard, ProjectCard, CertificationCard, TechStackCard } from './components/cards'
+import { ExperienceMap } from './components/ExperienceMap'
+import { ExperienceTimeline, MobileViewToggle } from './components/ExperienceTimeline'
+import type { Experience } from './types/experience'
 
 // Helper function to format date
 const formatDate = (date: Date | "present"): string => {
@@ -90,12 +94,19 @@ function TechStackSection() {
 
 // Experience Section Component
 function ExperienceSection() {
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null)
+  const [mobileView, setMobileView] = useState<'list' | 'map'>('list')
+  
   // Sort experiences by date (most recent first)
   const sortedExperiences = [...experiences].sort((a, b) => {
     const dateA = a.endDate === "present" ? new Date() : a.endDate
     const dateB = b.endDate === "present" ? new Date() : b.endDate
     return dateB.getTime() - dateA.getTime()
   })
+
+  const handleExperienceClick = (experience: Experience) => {
+    setSelectedExperience(selectedExperience === experience ? null : experience)
+  }
 
   return (
     <section className="py-12 md:py-20 px-4 relative overflow-hidden">
@@ -107,15 +118,45 @@ function ExperienceSection() {
       <div className="absolute top-20 left-20 w-6 h-6 bg-orange-400 border-2 border-black sparkle animate-float hidden md:block"></div>
       <div className="absolute bottom-40 right-1/4 w-5 h-5 bg-red-400 border-2 border-black sparkle-diamond animate-float hidden md:block" style={{animationDelay: '0.7s'}}></div>
       
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         <SectionHeader color="orange" icon={<Building2 size={28} />}>
-          Experience
+          My Journey Through Time & Space 🗺️
         </SectionHeader>
         
-        <div className="space-y-6">
-          {sortedExperiences.map((exp, index) => (
-            <ExperienceCard key={index} experience={exp} formatDate={formatDate} />
-          ))}
+        {/* Main container with neo-brutalism style */}
+        <div className="bg-white border-4 border-black rounded-xl neo-shadow-lg overflow-hidden">
+          {/* Mobile Toggle */}
+          <div className="md:hidden p-4 border-b-4 border-black">
+            <MobileViewToggle view={mobileView} onViewChange={setMobileView} />
+          </div>
+          
+          {/* Desktop: Side by side layout */}
+          <div className="flex flex-col md:flex-row">
+            {/* Timeline - Left side */}
+            <div className={`md:w-2/5 lg:w-1/3 border-r-0 md:border-r-4 border-black ${mobileView === 'list' ? 'block' : 'hidden md:block'}`}>
+              <div className="p-4 border-b-4 border-black bg-gray-50">
+                <h3 className="font-black text-lg">Journey Timeline</h3>
+              </div>
+              <div className="p-4 max-h-[500px] md:max-h-[600px] overflow-y-auto">
+                <ExperienceTimeline 
+                  experiences={sortedExperiences}
+                  selectedExperience={selectedExperience}
+                  onExperienceClick={handleExperienceClick}
+                  formatDate={formatDate}
+                />
+              </div>
+            </div>
+            
+            {/* Map - Right side */}
+            <div className={`md:w-3/5 lg:w-2/3 ${mobileView === 'map' ? 'block' : 'hidden md:block'}`}>
+              <ExperienceMap 
+                experiences={sortedExperiences}
+                selectedExperience={selectedExperience}
+                onMarkerClick={handleExperienceClick}
+                formatDate={formatDate}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -236,13 +277,15 @@ function Footer() {
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#fffef0] grid-pattern">
-      <HeroSection />
-      <TechStackSection />
-      <ExperienceSection />
-      <EducationSection />
-      <ProjectsSection />
-      <CertificationsSection />
+    <div className="grid-pattern md:py-10">
+      <MainCanvasCard>
+        <HeroSection />
+        <TechStackSection />
+        <ExperienceSection />
+        <EducationSection />
+        <ProjectsSection />
+        <CertificationsSection />
+      </MainCanvasCard>
       <Footer />
     </div>
   )

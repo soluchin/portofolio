@@ -46,8 +46,8 @@ export const experiences: Experience[] = [
         startDate: new Date("2022-08-01"),
         endDate: new Date("2023-08-01"),
         description: "Working on various web development projects using modern technologies.",
-        location: "South Jakarta, Indonesia",
-        longlat: { lat: -6.3923, long: 123.8456 },
+        location: "Bandung, Indonesia",
+        longlat: { lat: -6.9175, long: 107.6191 },
     },
     {
         company: "PT BBBBBBB",
@@ -55,8 +55,8 @@ export const experiences: Experience[] = [
         startDate: new Date("2023-08-01"),
         endDate: new Date("2024-08-01"),
         description: "Working on various web development projects using modern technologies.",
-        location: "South Jakarta, Indonesia",
-        longlat: { lat: -6.1233, long: 321.8456 },
+        location: "Yogyakarta, Indonesia",
+        longlat: { lat: -7.7956, long: 110.3695 },
     },
     {
         company: "PT CCCCCCC",
@@ -65,7 +65,25 @@ export const experiences: Experience[] = [
         endDate: "present",
         description: "Working on various web development projects using modern technologies.",
         location: "South Jakarta, Indonesia",
-        longlat: { lat: -6.1111, long: 106.8456 },
+        longlat: { lat: -6.2615, long: 106.8106 },
+    },
+    {
+        company: "PT DDDDDDD",
+        role: "Software Engineer",
+        startDate: new Date("2024-08-01"),
+        endDate: "present",
+        description: "Working on various web development projects using modern technologies.",
+        location: "South Jakarta, Indonesia",
+        longlat: { lat: -6.2615, long: 103.8262 },
+    },
+    {
+        company: "PT EEEEEEEE",
+        role: "Software Engineer",
+        startDate: new Date("2024-08-01"),
+        endDate: "present",
+        description: "Working on various web development projects using modern technologies.",
+        location: "South Jakarta, Indonesia",
+        longlat: { lat: -6.2425, long: 106.332 },
     },
 ]
 

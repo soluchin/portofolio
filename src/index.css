@@ -180,3 +180,34 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: #fffef0;
 }
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  z-index: 1;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+.leaflet-popup-tip {
+  border: 2px solid #000;
+  background: white;
+}
+
+.leaflet-control-zoom {
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0px 0px #000 !important;
+}
+
+.leaflet-control-zoom a {
+  border-bottom: 2px solid #000 !important;
+  font-weight: bold !important;
+}
+
+.leaflet-control-zoom a:last-child {
+  border-bottom: none !important;
+}
