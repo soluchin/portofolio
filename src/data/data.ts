@@ -173,7 +173,7 @@ export const certifications: Certification[] = [
 export const projects: Project[] = [
     {
         name: "OSINT Person Search By Publication",
-        description: "A simple web-based OSINT tool to search scholarly publications by author name via CrossRef and attempt to extract any email addresses from the corresponding publication pages. The search results are displayed based on relevance to the input query. This web is demo as a part of my work project in building an OSINT-based person search tool.",
+        description: "A simple web-based OSINT tool to search scholarly publications by author name via CrossRef and attempt to extract any email addresses from the corresponding publication pages. The search results are displayed based on relevance to the input query. This web is demo as a part of the bigger one on my work project in building an OSINT-based person search tool.",
         url: "https://github.com/soluchin/publications-scrap",
         technologies: ["Python", "BeautifulSoup", "FastAPI"],
         image: OsintCrossrefImg,

@@ -8,7 +8,7 @@ interface BackdropCardProps {
 export function MainCanvasCard({ children, className = '' }: BackdropCardProps) {
   return (
     <div 
-      className={`border-4 border-black bg-[#fffeee] rounded-md neo-shadow transition-all m-1 md:mx-auto md:w-[85vw] ${className}`}
+      className={`border-4 border-black bg-[#fffeee] rounded-md md:neo-shadow transition-all m-1 md:mx-auto md:w-[85vw] ${className}`}
     >
       {children}
     </div>
