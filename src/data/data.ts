@@ -29,7 +29,7 @@ export const profile: Profile = {
     github: "https://github.com/soluchin",
     linkedin: "https://www.linkedin.com/in/rafisolichin",
     homeLonglat: { lat: -6.115653, long: 106.179095 },
-    resumeURL: "/my_resume.pdf",
+    resumeURL: "/my_resume_v2.pdf",
 }
 
 export const techStacks: Stack[] = [
