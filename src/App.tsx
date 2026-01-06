@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Github, Linkedin, Footprints, GraduationCap, Award, BadgeAlert } from 'lucide-react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Github, Linkedin, Footprints, GraduationCap, Award, BadgeAlert, Download, Mail } from 'lucide-react'
 import { profile, techStacks, experiences, certifications, projects, degrees } from './data/data'
 import { SectionHeader, SocialButton, MainCanvasCard } from './components/ui'
 import { EducationCard, ProjectCard, CertificationCard, TechStackCard } from './components/cards'
@@ -13,8 +13,35 @@ const formatDate = (date: Date | "present"): string => {
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
 }
 
+// Hook to check if a file exists
+function useFileExists(url: string | undefined): { exists: boolean; fullUrl: string } {
+  const [exists, setExists] = useState(false)
+  
+  // Construct full URL with base path
+  const fullUrl = url ? `${import.meta.env.BASE_URL}/${url.replace(/^\//, '')}` : ''
+  
+  useEffect(() => {
+    if (!url || url.trim() === '') {
+      setExists(false)
+      return
+    }
+    
+    fetch(fullUrl, { method: 'HEAD' })
+      .then(response => {
+        setExists(response.ok)
+      })
+      .catch(() => {
+        setExists(false)
+      })
+  }, [fullUrl, url])
+  
+  return { exists, fullUrl }
+}
+
 // Hero Section Component
 function HeroSection() {
+  const { exists: resumeExists, fullUrl: resumeFullUrl } = useFileExists(profile.resumeURL)
+  
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-12 md:py-20 relative overflow-hidden">
       {/* Background Decorative Blurs */}
@@ -49,18 +76,38 @@ function HeroSection() {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4 tracking-tight">
               {profile.name}
             </h1>
-            <p className="text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl max-w-xl mb-4 leading-relaxed">
               {profile.bio}
             </p>
             
-            {/* Social Links */}
-            <div className="flex gap-4 justify-center lg:justify-start">
+            {/* Email */}
+            <a 
+              href={`mailto:${profile.email}`}
+              className="inline-flex items-center gap-2 text-gray-700 hover:text-black mb-6 font-medium transition-colors"
+            >
+              <Mail size={18} />
+              {profile.email}
+            </a>
+            
+            {/* Social Links & Resume */}
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <SocialButton href={profile.github} icon={<Github size={20} />} variant="github">
                 GitHub
               </SocialButton>
               <SocialButton href={profile.linkedin} icon={<Linkedin size={20} />} variant="linkedin">
                 LinkedIn
               </SocialButton>
+              {resumeExists && (
+                <a 
+                  href={resumeFullUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-lime-400 text-black px-6 py-3 border-4 border-black font-bold neo-hover transition-all"
+                >
+                  <Download size={20} />
+                  Resume
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -76,13 +123,76 @@ function HeroSection() {
 
 // Tech Stack Marquee Component
 function TechStackSection() {
-  // Duplicate the array for seamless loop
-  const duplicatedStacks = [...techStacks, ...techStacks, ...techStacks, ...techStacks, ...techStacks]
+  // Duplicate the array once for seamless loop (original + 1 copy)
+  const duplicatedStacks = [...techStacks, ...techStacks]
+  
+  const containerRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const [contentWidth, setContentWidth] = useState(0)
+  
+  // Calculate content width for seamless loop
+  useEffect(() => {
+    if (contentRef.current) {
+      // Get width of half the content (one set of techStacks)
+      const fullWidth = contentRef.current.scrollWidth
+      setContentWidth(fullWidth / 2)
+    }
+  }, [])
+  
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if (!containerRef.current) return
+    setIsDragging(true)
+    setStartX(e.pageX - containerRef.current.offsetLeft)
+    setScrollLeft(containerRef.current.scrollLeft)
+  }, [])
+  
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false)
+  }, [])
+  
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDragging || !containerRef.current) return
+    e.preventDefault()
+    const x = e.pageX - containerRef.current.offsetLeft
+    const walk = (x - startX) * 2 // Scroll speed multiplier
+    containerRef.current.scrollLeft = scrollLeft - walk
+  }, [isDragging, startX, scrollLeft])
+  
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (!containerRef.current) return
+    setIsDragging(true)
+    setStartX(e.touches[0].pageX - containerRef.current.offsetLeft)
+    setScrollLeft(containerRef.current.scrollLeft)
+  }, [])
+  
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isDragging || !containerRef.current) return
+    const x = e.touches[0].pageX - containerRef.current.offsetLeft
+    const walk = (x - startX) * 2
+    containerRef.current.scrollLeft = scrollLeft - walk
+  }, [isDragging, startX, scrollLeft])
 
   return (
     <section className="py-12 md:py-8 border-y-4 border-black bg-lime-300 overflow-hidden">
-      <div className="relative">
-        <div className="flex animate-marquee">
+      <div 
+        ref={containerRef}
+        className={`relative overflow-x-auto scrollbar-hide cursor-grab ${isDragging ? 'cursor-grabbing' : ''}`}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleMouseUp}
+        onTouchMove={handleTouchMove}
+      >
+        <div 
+          ref={contentRef}
+          className={`flex w-max ${isDragging ? '' : 'animate-marquee'}`}
+          style={{ '--marquee-width': `${contentWidth}px` } as React.CSSProperties}
+        >
           {duplicatedStacks.map((stack, index) => (
             <TechStackCard key={index} stack={stack} />
           ))}
@@ -283,11 +393,11 @@ function App() {
       <div className="grid-pattern md:py-10">
         <MainCanvasCard>
           <HeroSection />
-          <TechStackSection />
-          <FootprintsSection />
-          <EducationSection />
-          <ProjectsSection />
-          <CertificationsSection />
+          {techStacks.length > 0 && <TechStackSection />}
+          {experiences.length > 0 && <FootprintsSection />}
+          {degrees.length > 0 && <EducationSection />}
+          {projects.length > 0 && <ProjectsSection />}
+          {certifications.length > 0 && <CertificationsSection />}
         </MainCanvasCard>
       </div>
       <Footer />

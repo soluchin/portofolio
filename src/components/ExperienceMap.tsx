@@ -121,23 +121,6 @@ export function ExperienceMap({ experiences, degrees, profile, selectedExperienc
           </Marker>
         )}
         
-        {/* Education markers */}
-        {validDegrees.map((deg, index) => (
-          <Marker
-            key={`edu-${index}`}
-            position={[deg.longlat!.lat, deg.longlat!.long]}
-            icon={educationIcon}
-          >
-            <Popup>
-              <div className="font-bold">🎓 {deg.institution}</div>
-              <div className="text-sm">{deg.degree} in {deg.fieldOfStudy}</div>
-              <div className="text-xs text-gray-600">
-                {deg.startYear} - {deg.endYear}
-              </div>
-            </Popup>
-          </Marker>
-        ))}
-        
         {/* Experience markers */}
         {validExperiences.map((exp, index) => (
           <Marker
@@ -153,6 +136,23 @@ export function ExperienceMap({ experiences, degrees, profile, selectedExperienc
               <div className="text-sm">{exp.company}</div>
               <div className="text-xs text-gray-600">
                 {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+
+        {/* Education markers */}
+        {validDegrees.map((deg, index) => (
+          <Marker
+            key={`edu-${index}`}
+            position={[deg.longlat!.lat, deg.longlat!.long]}
+            icon={educationIcon}
+          >
+            <Popup>
+              <div className="font-bold">🎓 {deg.institution}</div>
+              <div className="text-sm">{deg.degree} in {deg.fieldOfStudy}</div>
+              <div className="text-xs text-gray-600">
+                {deg.startYear} - {deg.endYear}
               </div>
             </Popup>
           </Marker>

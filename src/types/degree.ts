@@ -5,7 +5,9 @@ interface Degree {
     startYear: number;
     endYear: number | "present";
     grade?: string;
-    description?: string;
+    favoriteCourses?: string[];
+    projects?: { name: string; description: string }[];
+    thesis?: { title: string; titleId?: string };
     longlat?: { lat: number; long: number };
 }
 
