@@ -17,6 +17,8 @@ import GitIcon from "../assets/git.svg";
 import KafkaIcon from "../assets/kafka.svg";
 import NestJSIcon from "../assets/nestjs.svg";
 import PythonIcon from "../assets/python.svg";
+import OsintCrossrefImg from "../assets/project/osint_crossref.png";
+import HomehiveImg from "../assets/project/homehive.png";
 
 export const profile: Profile = {
     name: "Rafi Solichin",
@@ -70,7 +72,7 @@ export const experiences: Experience[] = [
         endDate: new Date("2022-07-01"),
         description: "Working on data cleansing and analysis projects. Visualized data using Power BI to support decision-making processes.",
         location: "Bogor, Indonesia",
-        longlat: { lat: -6.556510298748232, long: 106.73273680789637 },
+        longlat: { lat: -6.55598639267481, long: 106.72639540846679 },
     },
     {
         company: "Kodehive Technology & Academy",
@@ -146,14 +148,14 @@ export const certifications: Certification[] = [
         credentialURL: "https://coursera.org/share/8e48545e5ed5cac30e6674f78835cb93",
     },
     {
-        title: "Certified Kubernetes Administrator",
+        title: "Google IT Automation with Python",
         issuer: "Coursera",
         issueDate: new Date("2021-03-21"),
         credentialID: "",
         credentialURL: "https://coursera.org/share/c294e3cb7383f30bc42642951b17445d",
     },
     {
-        title: "Certified Kubernetes Administrator",
+        title: "Mathematics for Machine Learning",
         issuer: "Coursera",
         issueDate: new Date("2021-03-29"),
         credentialID: "",
@@ -170,14 +172,28 @@ export const certifications: Certification[] = [
 
 export const projects: Project[] = [
     {
-        name: "Snake Species Classification",
-        description: "Using the Convolutional Neural Network, four types of snake species were classified. Feature extraction is done by convolution technique and classifier using simple Deep Learning architecture. Snake species were successfully classified with 85% accuracy.",
-        url: "",
-        technologies: ["Python", "Tensorflow", "CNN"]
+        name: "OSINT Person Search By Publication",
+        description: "A simple web-based OSINT tool to search scholarly publications by author name via CrossRef and attempt to extract any email addresses from the corresponding publication pages. The search results are displayed based on relevance to the input query. This web is demo as a part of my work project in building an OSINT-based person search tool.",
+        url: "https://github.com/soluchin/publications-scrap",
+        technologies: ["Python", "BeautifulSoup", "FastAPI"],
+        image: OsintCrossrefImg,
     },
     {
-        name: "Human Gender Classification",
-        description: "This project aims to build a model that can recognize the gender of a person based on the characteristics that are different between male and female. using CNN deep learning and exception architecture, Model can classify with 82% accuracy.",
+        name: "The Home Hive App",
+        description: "HomeHive is a family organization app helping families manage daily tasks, schedules, and responsibilities. Responsible for Android mobile development, implementing core subscription features that integrate with google play subscription and shared calendar event tracking.",
+        url: "https://play.google.com/store/apps/details?id=com.hive.home&pcampaignid=web_share",
+        technologies: ["Kotlin", "Android", "Firebase"],
+        image: HomehiveImg,
+    },
+    {
+        name: "Nest React Starter",
+        description: "A full-stack monorepo starter template featuring NestJS as the backend API with React SPA served as static files. This template implements a Backend-for-Frontend (BFF) pattern with built-in authentication, role-based access control, and database integration using TypeORM.",
+        url: "https://github.com/soluchin/nest-react-starter",
+        technologies: ["Typescript", "NestJS", "React"]
+    },
+    {
+        name: "Snake Species Classification",
+        description: "Using the Convolutional Neural Network, four types of snake species were classified. Feature extraction is done by convolution technique and classifier using simple Deep Learning architecture. Snake species were successfully classified with 85% accuracy.",
         url: "",
         technologies: ["Python", "Tensorflow", "CNN"]
     },
@@ -218,6 +234,6 @@ export const degrees: Degree[] = [
             title: "Thesis Advisor Recommendation System Based on Grades and Course Syllabus Using Categorical Data Skyline Search (CDSS)",
             titleId: "Sistem Rekomendasi Dosen Pembimbing Tugas Akhir Berdasarkan Nilai dan Silabus Mata Kuliah Menggunakan CDSS"
         },
-        longlat: { lat: -6.55598639267481, long: 106.72639540846679 },
+        longlat: { lat: -6.556510298748232, long: 106.73273680789637 },
     }
 ];

@@ -1,10 +1,12 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import { DivIcon } from 'leaflet'
+import { DivIcon, LatLngBounds } from 'leaflet'
 import type { LatLngExpression } from 'leaflet'
 import 'leaflet/dist/leaflet.css'
+import { useEffect, useMemo } from 'react'
 import type { Experience } from '../types/experience'
 import type { Degree } from '../types/degree'
 import type { Profile } from '../types/profile'
+import type { Point } from '../types/point'
 
 // Create DivIcon with Lucide-style SVG icons
 const createIcon = (svg: string, bgColor: string) => new DivIcon({
@@ -63,10 +65,37 @@ interface ExperienceMapProps {
   formatDate: (date: Date | "present") => string
 }
 
-// Component to handle map view changes
-function MapController({ center, zoom }: { center: LatLngExpression; zoom: number }) {
+// Component to handle map view changes and auto-fit bounds
+function MapController({ 
+  selectedExperience, 
+  allPoints 
+}: { 
+  selectedExperience: Experience | null
+  allPoints: Point[]
+}) {
   const map = useMap()
-  map.setView(center, zoom, { animate: true })
+  
+  useEffect(() => {
+    if (selectedExperience?.longlat) {
+      // Zoom to selected experience
+      map.setView(
+        [selectedExperience.longlat.lat, selectedExperience.longlat.long], 
+        12, 
+        { animate: true }
+      )
+    } else if (allPoints.length > 0) {
+      // Fit bounds to show all markers
+      const bounds = new LatLngBounds(
+        allPoints.map(p => [p.lat, p.long] as [number, number])
+      )
+      map.fitBounds(bounds, { 
+        padding: [50, 50],
+        maxZoom: 11,  // Don't zoom in too much
+        animate: true 
+      })
+    }
+  }, [selectedExperience, allPoints, map])
+  
   return null
 }
 
@@ -81,22 +110,23 @@ export function ExperienceMap({ experiences, degrees, profile, selectedExperienc
     deg => deg.longlat && deg.longlat.lat && deg.longlat.long && deg.longlat.long <= 180
   ) || []
 
-  // Default center (Indonesia)
-  const defaultCenter: LatLngExpression = [-2.5, 118]
-  const defaultZoom = 4
+  // Collect all points for bounds calculation
+  const allPoints: Point[] = useMemo(() => [
+    ...validExperiences.map(exp => exp.longlat!),
+    ...validDegrees.map(deg => deg.longlat!),
+    ...(profile?.homeLonglat ? [profile.homeLonglat] : [])
+  ], [validExperiences, validDegrees, profile?.homeLonglat])
 
-  // Calculate center based on selected experience
-  const mapCenter: LatLngExpression = selectedExperience?.longlat 
-    ? [selectedExperience.longlat.lat, selectedExperience.longlat.long]
-    : defaultCenter
-  
-  const mapZoom = selectedExperience ? 10 : defaultZoom
+  // Default center (Indonesia) - used only for initial render
+  const defaultCenter: LatLngExpression = allPoints.length > 0 
+    ? [allPoints[0].lat, allPoints[0].long] 
+    : [-6.2, 106.8]
 
   return (
     <div className="w-full h-full overflow-hidden">
       <MapContainer
         center={defaultCenter}
-        zoom={defaultZoom}
+        zoom={10}
         className="w-full h-full"
         scrollWheelZoom={true}
         style={{ minHeight: '400px', height: '100%' }}
@@ -106,7 +136,10 @@ export function ExperienceMap({ experiences, degrees, profile, selectedExperienc
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         
-        <MapController center={mapCenter} zoom={mapZoom} />
+        <MapController 
+          selectedExperience={selectedExperience} 
+          allPoints={allPoints} 
+        />
         
         {/* Home marker */}
         {profile?.homeLonglat && (
