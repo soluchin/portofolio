@@ -138,48 +138,55 @@ export const experiences: Experience[] = [
 ]
 
 export const certifications: Certification[] = [
-    // {
-    //     title: "Certified Kubernetes Administrator",
-    //     issuer: "The Linux Foundation",
-    //     issueDate: new Date("2021-05-15"),
-    //     credentialID: "CKA-1234567890",
-    //     credentialURL: "https://www.linuxfoundation.org/certification/cka/",
-    // },
-    // {
-    //     title: "Certified Kubernetes Administrator",
-    //     issuer: "The Linux Foundation",
-    //     issueDate: new Date("2021-05-15"),
-    //     credentialID: "CKA-1234567890",
-    //     credentialURL: "https://www.linuxfoundation.org/certification/cka/",
-    // },
-    // {
-    //     title: "Certified Kubernetes Administrator",
-    //     issuer: "The Linux Foundation",
-    //     issueDate: new Date("2021-05-15"),
-    //     credentialID: "CKA-1234567890",
-    //     credentialURL: "https://www.linuxfoundation.org/certification/cka/",
-    // }
+    {
+        title: "Google IT Support",
+        issuer: "Coursera",
+        issueDate: new Date("2021-03-22"),
+        credentialID: "",
+        credentialURL: "https://coursera.org/share/8e48545e5ed5cac30e6674f78835cb93",
+    },
+    {
+        title: "Certified Kubernetes Administrator",
+        issuer: "Coursera",
+        issueDate: new Date("2021-03-21"),
+        credentialID: "",
+        credentialURL: "https://coursera.org/share/c294e3cb7383f30bc42642951b17445d",
+    },
+    {
+        title: "Certified Kubernetes Administrator",
+        issuer: "Coursera",
+        issueDate: new Date("2021-03-29"),
+        credentialID: "",
+        credentialURL: "https://coursera.org/share/cbf4cc08195b30a850f571598e18fbb0",
+    },
+    {
+        title: "DeepLearning.AI TensorFlow Developer",
+        issuer: "Deeplearning.AI - Coursera",
+        issueDate: new Date("2022-04-18"),
+        credentialID: "",
+        credentialURL: "https://coursera.org/share/d5acd9a8edec84afeb46e29816ab8a7d",
+    }
 ];
 
 export const projects: Project[] = [
-    // {
-    //     name: "Project Alpha",
-    //     description: "A web application for managing tasks and projects.",
-    //     url: "",
-    //     technologies: ["React", "TypeScript", "Node.js"]
-    // },
-    // {
-    //     name: "Project Beta",
-    //     description: "A mobile app for tracking fitness activities.",
-    //     url: "",
-    //     technologies: ["React Native", "Expo", "Firebase"]
-    // },
-    // {
-    //     name: "Project Gamma",
-    //     description: "An e-commerce platform for buying and selling products.",
-    //     url: "",
-    //     technologies: ["Next.js", "GraphQL", "PostgreSQL"]
-    // }
+    {
+        name: "Snake Species Classification",
+        description: "Using the Convolutional Neural Network, four types of snake species were classified. Feature extraction is done by convolution technique and classifier using simple Deep Learning architecture. Snake species were successfully classified with 85% accuracy.",
+        url: "",
+        technologies: ["Python", "Tensorflow", "CNN"]
+    },
+    {
+        name: "Human Gender Classification",
+        description: "This project aims to build a model that can recognize the gender of a person based on the characteristics that are different between male and female. using CNN deep learning and exception architecture, Model can classify with 82% accuracy.",
+        url: "",
+        technologies: ["Python", "Tensorflow", "CNN"]
+    },
+    {
+        name: "Covid-19 Vaccine Sentiment Analysis",
+        description: "A few years ago, Indonesian Twitter users were busy with opinions about the Covid-19 vaccine. Many people reveal their opinion about vaccines, and there are so many to check it one by one. I tried to build a Sentiment classifier and was successful with 64% accuracy .",
+        url: "",
+        technologies: ["Python", "Tensorflow", "KNN"]
+    }
 ];
 
 export const degrees: Degree[] = [
