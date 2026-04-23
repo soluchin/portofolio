@@ -24,7 +24,9 @@ export const profile: Profile = {
     name: "Rafi Solichin",
     image: ProfilePic,
     title: "Software Engineer",
-    bio: "Fullstack developer specializing in server-side applications, databases, and API integrations. Proficient in Python, C#, JavaScript and Typescript with hands-on Docker experience. Currently exploring roles in System Architecture, DevOps, or Cloud Engineering.",
+    bio: `Full-stack .NET Developer with 4 years of experience building web and cross-platform applications using .NET, React, and Flutter. Specialized in developing scalable REST APIs, optimizing SQL queries, and integrating complex systems and third-party services. Experienced in designing backend architecture, working with database-driven systems, and deploying applications using Docker in Linux environments. Hands-on experience with cloud services including AWS (EC2, S3, RDS) and CI/CD pipelines using Jenkins.
+
+    Currently expanding expertise in cloud technologies and system design, with a strong interest in evolving towards cloud engineering and software architecture roles.    `,
     email: "rafisolichin@gmail.com",
     github: "https://github.com/soluchin",
     linkedin: "https://www.linkedin.com/in/rafisolichin",
