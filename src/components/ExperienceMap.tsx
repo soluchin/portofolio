@@ -57,20 +57,20 @@ const homeIcon = createIcon(homeSvg, '#22d3ee')            // Cyan for home
 const educationIcon = createIcon(graduationCapSvg, '#a855f7') // Purple for education
 
 interface ExperienceMapProps {
-  experiences: Experience[]
+  experiences?: Experience[]
   degrees?: Degree[]
   profile?: Profile
-  selectedExperience: Experience | null
-  onMarkerClick: (experience: Experience) => void
+  selectedExperience?: Experience | null
+  onMarkerClick?: (experience: Experience) => void
   formatDate: (date: Date | "present") => string
 }
 
 // Component to handle map view changes and auto-fit bounds
-function MapController({ 
-  selectedExperience, 
-  allPoints 
-}: { 
-  selectedExperience: Experience | null
+function MapController({
+  selectedExperience,
+  allPoints
+}: {
+  selectedExperience?: Experience | null
   allPoints: Point[]
 }) {
   const map = useMap()
@@ -99,7 +99,7 @@ function MapController({
   return null
 }
 
-export function ExperienceMap({ experiences, degrees, profile, selectedExperience, onMarkerClick, formatDate }: ExperienceMapProps) {
+export function ExperienceMap({ experiences = [], degrees, profile, selectedExperience, onMarkerClick, formatDate }: ExperienceMapProps) {
   // Filter experiences with valid coordinates
   const validExperiences = experiences.filter(
     exp => exp.longlat && exp.longlat.lat && exp.longlat.long && exp.longlat.long <= 180
@@ -160,9 +160,11 @@ export function ExperienceMap({ experiences, degrees, profile, selectedExperienc
             key={`exp-${index}`}
             position={[exp.longlat!.lat, exp.longlat!.long]}
             icon={yellowPinIcon}
-            eventHandlers={{
-              click: () => onMarkerClick(exp),
-            }}
+            {...(onMarkerClick ? {
+              eventHandlers: {
+                click: () => onMarkerClick(exp),
+              }
+            } : {})}
           >
             <Popup>
               <div className="font-bold">{exp.role}</div>

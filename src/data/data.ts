@@ -6,27 +6,22 @@ import type { Stack } from "../types/stack";
 import type { Degree } from "../types/degree";
 
 import ProfilePic from "../assets/profile.jpg";
-import JsIcon from "../assets/js.svg";
-import TsIcon from "../assets/ts.svg";
-import DockerIcon from "../assets/docker.svg";
-import ReactIcon from "../assets/react.svg";
 import CSIcon from "../assets/cs.svg";
 import NetCoreIcon from "../assets/netcore.svg";
-import PostgreSQLIcon from "../assets/postgresql.svg";
 import GitIcon from "../assets/git.svg";
-import KafkaIcon from "../assets/kafka.svg";
 import NestJSIcon from "../assets/nestjs.svg";
-import PythonIcon from "../assets/python.svg";
+import FlutterIcon from "../assets/flutter.svg";
+import DartIcon from "../assets/dart.svg";
+import KotlinIcon from "../assets/kotlin.svg";
+import AndroidIcon from "../assets/android.svg";
 import OsintCrossrefImg from "../assets/project/osint_crossref.png";
 import HomehiveImg from "../assets/project/homehive.png";
 
 export const profile: Profile = {
     name: "Rafi Solichin",
     image: ProfilePic,
-    title: "Software Engineer",
-    bio: `Full-stack .NET Developer with 4 years of experience building web and cross-platform applications using .NET, React, and Flutter. Specialized in developing scalable REST APIs, optimizing SQL queries, and integrating complex systems and third-party services. Experienced in designing backend architecture, working with database-driven systems, and deploying applications using Docker in Linux environments. Hands-on experience with cloud services including AWS (EC2, S3, RDS) and CI/CD pipelines using Jenkins.
-
-    Currently expanding expertise in cloud technologies and system design, with a strong interest in evolving towards cloud engineering and software architecture roles.    `,
+    titles: ["Software Engineer", "Mobile Apps Developer"],
+    bio: `Mobile apps developer cross-platform applications with Flutter and native Android with Kotlin. Experienced in the full mobile development lifecycle from UI implementation and state management to third-party integrations like Google SSO and Play Store subscriptions. Comfortable with backend development using .NET and NestJS when needed.`,
     email: "rafisolichin@gmail.com",
     github: "https://github.com/soluchin",
     linkedin: "https://www.linkedin.com/in/rafisolichin",
@@ -35,17 +30,14 @@ export const profile: Profile = {
 }
 
 export const techStacks: Stack[] = [
+    {name: "Flutter", icon: FlutterIcon},
+    {name: "Dart", icon: DartIcon},
+    {name: "Kotlin", icon: KotlinIcon},
+    {name: "Android", icon: AndroidIcon},
+    {name: "Version Control (Git)", icon: GitIcon},
     {name: "C#", icon: CSIcon},
     {name: ".NET Core", icon: NetCoreIcon},
-    {name: "JavaScript", icon: JsIcon},
-    {name: "TypeScript", icon: TsIcon},
     {name: "NestJS", icon: NestJSIcon},
-    {name: "React", icon: ReactIcon},
-    {name: "Python", icon: PythonIcon},
-    {name: "Docker", icon: DockerIcon},
-    {name: "PostgreSQL", icon: PostgreSQLIcon},
-    {name: "Version Control (Git)", icon: GitIcon},
-    {name: "Kafka Message Broker", icon: KafkaIcon},
 ];
 
 export const experiences: Experience[] = [
@@ -101,7 +93,7 @@ export const experiences: Experience[] = [
         endDate: new Date("2023-02-01"),
         description: "Led mobile development training sessions covering the complete Flutter development lifecycle—from Dart fundamentals and UI design to advanced state management with Riverpod, GetX, and BLoC. Taught participants networking concepts and server-side integration through HTTP requests and CRUD operations.",
         location: "South Jakarta, Indonesia",
-        longlat: { lat: -6.2425, long: 106.332 },
+        longlat: { lat: -6.1866, long: 106.5666 },
     },
     {
         company: "Trainocate",
@@ -110,7 +102,7 @@ export const experiences: Experience[] = [
         endDate: new Date("2023-12-05"),
         description: "Delivered training on containerization fundamentals and modern deployment practices. Guided participants through the complete Docker workflow—from application packaging to image creation and container management. Covered Kubernetes orchestration including container management, auto-scaling configurations, and inter-service networking within clusters.",
         location: "South Jakarta, Indonesia",
-        longlat: { lat: -6.2425, long: 106.332 },
+        longlat: { lat: -6.227694941996302, long: 106.80622655624865 },
     },
     {
         company: "PT Nawa Data Solutions",
@@ -134,11 +126,20 @@ export const experiences: Experience[] = [
         company: "PT Bukit Silikon Indonesia",
         role: "Software Engineer",
         startDate: new Date("2024-05-01"),
-        endDate: "present",
-        description: "Built and maintained healthcare web applications using C# and ASP.NET MVC framework, with front-end optimization using jQuery and AJAX. Extended technical expertise to Android mobile development with Kotlin. Researched and implemented third-party integrations such as Google SSO authentication and payment gateway services. Currently developing an OSINT-based person search tool utilizing web scraping techniques.",
+        endDate: new Date("2025-02-17"),
+        description: "Built and maintained healthcare web applications using C# and ASP.NET MVC framework, with front-end optimization using jQuery and AJAX; Developing an OSINT-based person search tool utilizing web scraping techniques.",
         location: "West Jakarta, Indonesia",
         longlat: { lat: -6.174422124213384, long: 106.78978306856816 },
     },
+    {
+        company: "PT Bukit Silikon Indonesia",
+        role: "Android Mobile Developer",
+        startDate: new Date("2025-02-17"),
+        endDate: new Date("2026-05-31"),
+        description: "Extended technical expertise to Android mobile development with Kotlin. Researched and implemented third-party integrations such as Google SSO authentication and Google Play Subscription services.",
+        location: "West Jakarta, Indonesia",
+        longlat: { lat: -6.174422124213384, long: 106.78978306856816 },
+    }
 ]
 
 export const certifications: Certification[] = [

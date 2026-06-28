@@ -1,7 +1,7 @@
 interface Profile {
     name: string;
     image: Object;
-    title: string;
+    titles: string[];
     bio: string;
     email: string;
     github: string;
